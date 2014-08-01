@@ -1,2 +1,11 @@
 body {
+    width: fill-available;
+    height: fill-available;
+    background: black;
+}
+#mainFrame{
+    display: block;
+    background: white;
+    width: fill-available;
+    height: fill-available;
 }
