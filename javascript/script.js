@@ -22,12 +22,16 @@ function getScreenSize(){
             alert(posX);
             $("#mainFrame").css({
                 "position": "absolute",
-                "left": posX + "px",
-                "top": 0,
+                "display": "block",
+                "background": "white",
+                "width": "fill-available",
+                "height": "fill-available",
+                "margin": 0,
                 "width": shrinkWidth(winHt) + "px",
-                "height": winHt + "px"
+                "height": winHt + "px",
+                "top": "0px"
             });
-            alert($("#mainFrame").css("left"));
+            $("#mainFrame").css("left", posX);
         }
     }
     else{

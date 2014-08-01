@@ -2,10 +2,8 @@ body {
     width: fill-available;
     height: fill-available;
     background: black;
+    padding: 0;
 }
 #mainFrame{
-    display: block;
-    background: white;
-    width: fill-available;
-    height: fill-available;
+    
 }
