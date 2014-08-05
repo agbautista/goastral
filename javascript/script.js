@@ -65,31 +65,65 @@ function layoutP1(){
         else{
             //therefore kasya yung haba pero hinde yung tnagkad. Shrink this shit.
             //alter the heights of the elements with respect to the new screen heights
-            tempHt = (parseInt($("#mainFrame").css("height")) * .8475);
+            tempHt = (parseInt($("#mainFrame").css("height")) * .83);
+            getRule("1", (tempHt * .0363) - ((parseInt($("#mainFrame").css("height")) * .0588) *3) , "slideIn");
+            $("#tbox1").css({
+                height: (parseInt($("#mainFrame").css("height")) * .0588) 
+            });
+            $("#tbox2").css({
+                height: (parseInt($("#mainFrame").css("height")) * .0588) 
+            });
+            $("#tbox3").css({
+                height: (parseInt($("#mainFrame").css("height")) * .0588) 
+            });
+            $("#p1b1").css({
+                "width": (parseInt($("#mainFrame").css("width")) * .1711),
+                "height": (parseInt($("#mainFrame").css("height")) * .0588),
+                "top": (parseInt($("#mainFrame").css("height")) * .5563),
+                "left": (parseInt($("#mainFrame").css("width")) * .188)
+            });
+            $("#p1b2").css({
+                "width": (parseInt($("#mainFrame").css("width")) * .1609),
+                "height": (parseInt($("#mainFrame").css("height")) * .0588),
+                "top": (parseInt($("#mainFrame").css("height")) * .025),
+                "left": (parseInt($("#mainFrame").css("width")) * .3620)
+            });
+            $("#p1b3").css({
+                "width": (parseInt($("#mainFrame").css("width")) * .225),
+                "height": (parseInt($("#mainFrame").css("height")) * .0588),
+                "top": (parseInt($("#mainFrame").css("height")) * .5438),
+                "left": (parseInt($("#mainFrame").css("width")) * .6492)
+            });
             $("#p1f1").css({
                 "margin": 0,
-                "width": shrinkWidth(tempHt, 678, 431) + "px",
+                "width": shrinkWidth(tempHt, 664, 414) + "px",
                 "height": tempHt + "px",
                 "position": "relative",
-                "left": (parseInt($("#mainFrame").css("width")) * .0195) + "px",
-                "top": tempHt * .0125
+                "left": (parseInt($("#mainFrame").css("width")) * .0266) + "px",
+                "top": (tempHt * .0363) + winHt
             });
             $("#p1f2").css({
                 "margin": 0,
-                "width": shrinkWidth(tempHt, 678, 485) + "px",
+                "width": shrinkWidth(tempHt, 664, 468) + "px",
                 "height": tempHt + "px",
                 "position": "relative",
-                "top": tempHt * .0125
+                "top": (tempHt * .0363) - winHt
             });
-            $("#p1f2").css("left", (parseInt($("#p1f1").css("width")) * -.1462) + parseInt($("#p1f1").css("left")));
+            $("#p1f2").css("left", (parseInt($("#mainFrame").css("width")) * -.0367) + parseInt($("#p1f1").css("left")));
             $("#p1f3").css({
                 "margin": 0,
-                "width": shrinkWidth(tempHt, 678, 445) + "px",
+                "width": shrinkWidth(tempHt, 664, 432) + "px",
                 "height": tempHt + "px",
                 "position": "relative",
-                "left": (parseInt($("#p1f2").css("width")) * -.1956) - 10 ,
-                "top": tempHt * .0125
+                "left": (parseInt($("#mainFrame").css("width")) * -.0406) + parseInt($("#p1f2").css("left")) ,
+                "top": (tempHt * .0363) + winHt
             });
+            $("#p1b1").delay(4400).fadeIn(700);
+            assignFx("#p1f1", "slideIn", "1s", (tempHt * .0363) - ((parseInt($("#mainFrame").css("height")) * .0588) *3));
+            $("#p1b2").delay(8000).fadeIn(700);
+            assignFx("#p1f2", "slideIn", "5s", (tempHt * .0363) - ((parseInt($("#mainFrame").css("height")) * .0588) *3));
+            $("#p1b3").delay(11600).fadeIn(700);
+            assignFx("#p1f3", "slideIn", "8s", (tempHt * .0363) - ((parseInt($("#mainFrame").css("height")) * .0588) *3));
         }
     }
     else{
@@ -98,6 +132,50 @@ function layoutP1(){
         }
         else {
             //therefore maliit yung monitor. Shrink this shit. adopt the height of the monitor. Adjust the width of frame.
+        }
+    }
+}
+function assignFx(objName,fxName,delay, x){
+    $(objName).css({
+        "-webkit-animation-duration": "4s",
+        "-webkit-animation-delay": delay,
+        "-webkit-animation-iteration-count": "1",
+        "-webkit-animation-name": fxName,
+        "animation-duration": "4s",
+        "animation-delay": delay,
+        "animation-iteration-count": "1",
+        "animation-name": fxName,
+        "-moz-animation-duration": "4s",
+        "-moz-animation-iteration-count": "1",
+        "-moz-animation-delay": delay,
+        "-moz-mation-name": fxName,
+        "-ms-transform": "scale(1,1)",
+        "-webkit-transform": "scale(1,1)",
+        "transform": "scale(1,1)"
+    });
+        $(objName).one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+        $(objName).css("opacity", 1);
+        $(objName).css("top", x );
+    });
+}
+function getRule(op,y, objName) //sets the keyframe rules
+ {
+    var rule;
+    var ss = document.styleSheets;
+    for (var i = 0; i < ss.length; ++i) {
+        try{
+        for (var temp = 0; temp < ss[i].cssRules.length; ++temp) {
+            rule = ss[i].cssRules[temp];
+            if (rule.name == objName && rule.type == window.CSSRule.KEYFRAMES_RULE) {
+                cssRule = rule;
+                try{cssRule.appendRule("100%{opacity: " + op + "; top: " + y + "px;}");}
+                catch(err){
+                    cssRule.insertRule("to{opacity: " + op + "; top: " + y + "px;}");}
+            }
+        }
+        }
+        catch(err){
+            alert("bitch may error ka!");
         }
     }
 }
