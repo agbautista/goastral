@@ -1,7 +1,45 @@
 body {
     width: fill-available;
     height: fill-available;
-    background: black;
+    background: white;
+    padding: 0;
+}
+#mainFrame{
+    padding: 0;
+}
+#container{
+    width: 1280px;
+}
+#p1f1{
+    position: relative;
+    left: 25px;
+    background-image: url('../images/p1f1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    float: left;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+}
+#p1f2{
+    position: relative;
+    left: -63px;
+    background-image: url('../images/p1f2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    float: left;
+    z-index: 2;
+    margin: 0;
+}
+#p1f3{
+    position: relative;
+    left: -65px;
+    background-image: url('../images/p1f3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    float: left;
+    z-index: 2;
+    margin: 0;
     padding: 0;
 }
 
